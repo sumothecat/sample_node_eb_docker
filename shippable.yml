@@ -10,8 +10,8 @@ build:
       - docker build -t="harryi3t/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER" .
       - docker push harryi3t/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
       # ECR
-      # - docker tag harryi3t/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER 0971114143.dkr.ecr.us-east-1.amazonaws.com/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
-      # - docker push 0971114143.dkr.ecr.us-east-1.amazonaws.com/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
+      - docker tag harryi3t/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER 480971114143.dkr.ecr.us-east-1.amazonaws.com/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
+      - docker push 480971114143.dkr.ecr.us-east-1.amazonaws.com/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
       # Quay
       - docker tag harryi3t/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER quay.io/shippablequay/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
       - docker push quay.io/shippablequay/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER
@@ -41,19 +41,19 @@ integrations:
       container_port: "80"
 
     # Private Image (ECR)
-    # - integrationName: "aws-test"
-    #   type: aws
-    #   target: eb_docker
-    #   application_name: "sample-node-eb-docker-app"
-    #   env_name: "ecr-env"
-    #   bucket_name: "elasticbeanstalk-us-east-1-480971114143"
-    #   region: "us-east-1"
-    #   image_name: "0971114143.dkr.ecr.us-east-1.amazonaws.com/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER"
-    #   container_port: "80"
+    - integrationName: "aws-test"
+      type: aws
+      target: eb_docker
+      application_name: "sample-node-eb-docker-app"
+      env_name: "ecr-env"
+      bucket_name: "elasticbeanstalk-us-east-1-480971114143"
+      region: "us-east-1"
+      image_name: "480971114143.dkr.ecr.us-east-1.amazonaws.com/sample_node_eb_docker:$BRANCH.$BUILD_NUMBER"
+      container_port: "80"
 
   hub:
-    # - integrationName: "ecr-test"
-    #   type: ecr
+    - integrationName: "ecr-test"
+      type: ecr
     - integrationName: "docker-test"
       type: docker
     - integrationName: "quay-test"
